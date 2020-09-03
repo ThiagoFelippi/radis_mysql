@@ -4,6 +4,7 @@ import com.practice.redis_mysql.entities.User;
 import com.practice.redis_mysql.entities.UserDTO;
 import com.practice.redis_mysql.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class FindOneById {
     private final UserRepository userRepository;
 
+    @Cacheable("userCache")
     public UserDTO execute(int id) throws Exception {
         //business rules here...//
         if(id < 0){

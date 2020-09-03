@@ -3,6 +3,7 @@ package com.practice.redis_mysql.services.user;
 import com.practice.redis_mysql.entities.User;
 import com.practice.redis_mysql.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class FindAll {
     private final UserRepository userRepository;
 
+    @Cacheable("userCache")
     public List<User> execute(){
         // If have business rules insert here
         return userRepository.findAll();
