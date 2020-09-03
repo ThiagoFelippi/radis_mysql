@@ -3,6 +3,8 @@ package com.practice.redis_mysql.services.user;
 import com.practice.redis_mysql.entities.User;
 import com.practice.redis_mysql.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class CreateUser {
     private final UserRepository userRepository;
 
+    @CacheEvict(cacheNames = "userCache", allEntries = true)
     public User execute(User user) throws Exception {
 
         //business rules here...//
